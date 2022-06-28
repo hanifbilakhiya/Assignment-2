@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" href="stye.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Kerala Tourism</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                <a class="nav-link" href="login.html">Log In</a>
+                <a class="nav-link" href="signup.html">Sig Up</a>
+                <a class="nav-link" href="destinations.html">Destinations</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Navbar end-->
+
+<body background="images/log in.crdownload">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <!--Login Form-->
+    <div id="container">
+        <form id="signup" class="form">
+            <h3>Log In</h3>
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email" autocomplete="off">
+            <small>error</small>
+    </div>
+
+    <div class="form-field">
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" autocomplete="off">
+        <small>error</small>
+    </div>
+    <div class="login-content">
+        <input id="log in button" type="submit" value="Log In"><br>
+    </div>
+
+
+
+    </form>
+    </div>
+    <!--Login Form End-->
+    <script>
+
+        const email = document.querySelector('#email');
+        const password = document.querySelector('#password');
+
+        const form = document.querySelector('#Log In');
+
+        form.addEventListener('submit', function (e) {
+            // prevent the form from submitting
+            e.preventDefault();
+
+        });
+        const isRequired = value => value === '' ? false : true;
+        const isBetween = (length, min, max) => length < min || length > max ? false : true;
+        const isEmailValid = (email) => {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        };
+        const isPasswordSecure = (password) => {
+            const re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+            return re.test(password);
+        };
+        const showError = (input, message) => {
+            // get the form-field element
+            const formField = input.parentElement;
+            // add the error class
+            formField.classList.remove('success');
+            formField.classList.add('error');
+
+            // show the error message
+            const error = formField.querySelector('small');
+            error.textContent = message;
+        };
+        const formField = input.parentElement;
+        formField.classList.remove('success');
+        formField.classList.add('error');
+        const error = formField.querySelector('small');
+        error.textContent = message;
+        const showSuccess = (input) => {
+            // get the form-field element
+            const formField = input.parentElement;
+
+            // remove the error class
+            formField.classList.remove('error');
+            formField.classList.add('success');
+
+            // hide the error message
+            const error = formField.querySelector('small');
+            error.textContent = '';
+        }
+        const checkEmail = () => {
+            let valid = false;
+            const email = emailEl.value.trim();
+            if (!isRequired(email)) {
+                showError(emailEl, 'Email cannot be blank.');
+            } else if (!isEmailValid(email)) {
+                showError(emailEl, 'Email is not valid.')
+            } else {
+                showSuccess(emailEl);
+                valid = true;
+            }
+            return valid;
+        }
+        const checkPassword = () => {
+
+            let valid = false;
+
+            const password = passwordEl.value.trim();
+
+            if (!isRequired(password)) {
+                showError(passwordEl, 'Password cannot be blank.');
+            } else if (!isPasswordSecure(password)) {
+                showError(passwordEl, 'Password must has at least 8 characters that include at least 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character in (!@#$%^&*)');
+            } else {
+                showSuccess(passwordEl);
+                valid = true;
+            }
+
+            return valid;
+        };
+        form.addEventListener('submit', function (e) {
+            // prevent the form from submitting
+            e.preventDefault();
+
+            // validate forms
+            let
+                isEmailValid = checkEmail(),
+                isPasswordValid = checkPassword();
+
+
+            let isFormValid = isEmailValid &&
+                isPasswordValid;
+
+            // submit to the server if the form is valid
+            if (isFormValid) {
+
+            }
+        });
+        form.addEventListener('input', function (e) {
+            switch (e.target.id) {
+                case 'email':
+                    checkEmail();
+                    break;
+                case 'password':
+                    checkPassword();
+                    break;
+            }
+        });
+
+    </script>
+</body>
+
+</html>

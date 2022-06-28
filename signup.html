@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="stye.css">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Kerala Tourism</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                <a class="nav-link" href="login.html">Log In</a>
+                <a class="nav-link" href="signup.html">Sig Up</a>
+                <a class="nav-link" href="destinations.html">Destinations</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Navbar end-->
+
+
+<body background="images/sign up.webp">
+    <!--sign up Form-->
+    <div class="container">
+        <div class="header">
+            <h2>Sign Up</h2>
+        </div>
+        <form class="form" id="form">
+            <div class="form-control">
+                <label>Username</label>
+                <input type="text" name="" id="username" placeholder="Enter your full name">
+                <i class="fa-solid fa-circle-check"></i>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <small>Error Msg</small>
+            </div>
+            <div class="form-control">
+                <label>Email</label>
+                <input type="email" name="" id="email" placeholder="Enter your email">
+                <i class="fa-solid fa-circle-check"></i>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <small>Error Msg</small>
+            </div>
+            <div class="form-control">
+                <label>Phone Number</label>
+                <input type="number" name="" id="number" placeholder="Enter your number">
+                <i class="fa-solid fa-circle-check"></i>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <small>Error Msg</small>
+            </div>
+            <div class="form-control">
+                <label>Password</label>
+                <input type="password" name="" id="password" placeholder="Enter your password">
+                <i class="fa-solid fa-circle-check"></i>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <small>Error Msg</small>
+            </div>
+            <div class="form-control">
+                <label>Confirm Password</label>
+                <input type="password" name="" id="cpassword" placeholder="Enter your password again">
+                <i class="fa-solid fa-circle-check"></i>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <small>Error Msg</small>
+            </div>
+            <input type="Submit" value="Submit" class="btn" name="">
+
+
+
+
+    </div>
+    </form>
+    <!--sign up Form End-->
+    <script>
+        const form = document.getElementById('form');
+        const username = document.getElementById('username');
+        const email = document.getElementById('email');
+        const number = document.getElementById('number');
+        const password = document.getElementById('password');
+        const cpassword = document.getElementById('cpassword');
+        // add event
+        form.addEventListener('submit', (event) ==> {
+            event.preventDefault();
+
+        })
+        // more email validate
+        const isemail = (emailVal) ==> {
+            var atSymbol = emailVal.indexof("@");
+            if(atSymbol < 1) return false;
+            var dot = emailVal.lastindexof('.');
+            if(dot <atSymbol + 3) return false;
+        if (dot === emailVal.length - 1) return false;
+        return true;
+
+}
+
+
+        // define the validate function
+        const validate = () => {
+            const usernameVal = username.value.trim();
+            const emailVal = email.value.trim();
+            const numberVal = number.value.trim();
+            const passwordVal = password.value.trim();
+            const cpasswordVal = cpassword.value.trim();
+            // validate username
+            if (usernameVal === "") {
+                setErrorMsg(username, 'can not be blank');
+            } else if (usernameVal length < 2) {
+                setErrorMsg(username, 'username mini 3 char');
+            }else {
+                setSuccessMsg(username);
+            }
+
+        }
+        // validate email
+        if (emailVal === "") {
+            setErrorMsg(email, 'email not be blank');
+        } else if (!isemail(emailVal)) {
+            setErrorMsg(emailVal, 'not a valid email');
+        } else {
+            setSuccessMsg(email);
+        }
+
+        // validate phone number
+        if (phonelVal === "") {
+            setErrorMsg(number, 'number can not be blank');
+        } else if (number.length != 10) {
+            setErrorMsg(numberlVal, 'not a valid number');
+        } else {
+            setSuccessMsg(number);
+        }
+        // validate password
+        if (passwordVal === "") {
+            setErrorMsg(number, 'password can not be blank');
+        } else if (password.length != 8) {
+            setErrorMsg(passwordlVal, 'mini 8 char');
+        } else {
+            setSuccessMsg(password);
+        }
+        // validate confirm password
+        if (casswordVal === "") {
+            setErrorMsg(cpassword, 'confirm password can not be blank');
+        } else if (passwordlVal === cpasswordVal) {
+            setErrorMsg(cpasswordlVal, 'mini 8 char');
+        } else {
+            setSuccessMsg(password);
+        }
+        function setErrorMsg(input, errormsgs) {
+            const formControl = input.parentElement;
+            const small = formControl.querySelector('small');
+            formControl.className = "form-control error";
+            small.innerText = errormsgs;
+        }
+        function setSuccessMsg(input, successmsgs) {
+            const formControl = input.parentElement;
+            formControl.className = "form-control success";
+            small.innerText = errormsgs;
+        }
+    </script>
+</body>
+
+</html>

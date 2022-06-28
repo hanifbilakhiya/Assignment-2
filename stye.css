@@ -1,0 +1,115 @@
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+:root {
+    --error-color: #dc3545;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+}
+* {
+    margin: 0%;
+    padding: 0%;
+    
+}
+
+body {
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+
+    width: 100%;
+    height: 100vh;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    padding: 40px;
+}
+
+.form-control {
+    
+    width: 20px;
+    margin: 10px;
+    padding: 20px;
+}
+
+.form-control label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.form-control input {
+    width: 100%;
+    padding: 2px;
+}
+
+.form-control.success input {
+    border-color: green;
+}
+
+.form-control.error input {
+    border-color: red;
+}
+
+.form-control i {
+    position: absolute;
+    right: 200px;
+    visibility: hidden;
+
+}
+.form-control.success i.fa-circle-check {
+color: green;
+visibility: visible;
+}
+
+.form-control.error i.fa-circle-exclamation {
+    color: red;
+    visibility: visible;
+    }
+.form-control small{
+    color: red;
+    position: absolute;
+    visibility: hidden;
+    bottom: 0;
+    left: 0;
+}
+.form-control.error small{
+    visibility: visible;
+}
+
+
+.cards {
+    margin: 5%;
+    padding: 5%;
+}
+
+.description-container {
+    display: flex;
+    max-width: 800px;
+    margin: 4px auto 2px;
+    size: 1rem;
+}
+
+.description-container .floating-image {
+    max-width: 400px
+}
+
+.container {
+    padding: 50px;
+    margin-right: 5px;
+}
+
+.circle img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    float: left;
+    margin: 20px;
+    -webkit-shape-outside: circle();
+}
